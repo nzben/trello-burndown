@@ -55,9 +55,9 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="boardName">Board Names</label>
+					<label class="control-label" for="boardName">Board IDs</label>
 					<div class="controls">						
-						<input class="input-xlarge" id="boardName" type="text" placeholder="Name of Board" data-bind="value: currentBoard">
+						<input class="input-xlarge" id="boardName" type="text" placeholder="Board ID (from Trello Board URL)" data-bind="value: currentBoard">
 						<a href="#" data-bind="click: addSprintBoard">Add</a>
 					</div>
 					<div class="controls" data-bind="visible: sprint.boards().length > 0">

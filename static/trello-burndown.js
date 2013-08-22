@@ -3,6 +3,7 @@ function Sprint() {
 	this.dates = ko.observableArray([]);
 	this.finishedList = ko.observable('');
 	this.lists = ko.observableArray([]);
+	this.boards = ko.observableArray([]);
 	this.standupMeeting = ko.observable();
 
 	this.clear = function() {
@@ -10,6 +11,7 @@ function Sprint() {
 		this.dates([]);
 		this.finishedList('');
 		this.lists([]);
+		this.boards([]);
 		this.standupMeeting();		
 	}
 
@@ -43,6 +45,7 @@ function SprintViewModel() {
 	var self = this;
 	self.sprint = new Sprint();
 	self.currentList = ko.observable('');
+	self.currentBoard = ko.observable('');
 	self.message = ko.observable('');
 	self.isErrorMessageVisible = ko.observable(false);
 	self.isInfoMessageVisible = ko.observable(false);
@@ -159,6 +162,11 @@ function SprintViewModel() {
 				self.addSprintList();
 			}
 
+			for (var i = 0; i < data.boards.length; i++) {
+				self.currentBoard(data.boards[i].name);
+				self.addSprintBoard();
+			}
+
 		}).fail(function(jqXHR, textStatus) {
 			self.message("Sprint could not be loaded");
 			self.isErrorMessageVisible(true);
@@ -196,6 +204,17 @@ function SprintViewModel() {
 	self.removeSprintList = function(sprintList) {
 		self.sprint.lists.remove(sprintList);
 	};
+
+	self.addSprintBoard = function() {
+		self.sprint.boards.push({ name: self.currentBoard() });
+		self.currentBoard("");
+	};
+
+	self.removeSprintList = function(sprintBoard) {
+		self.sprint.boards.remove(sprintBoard);
+	};
+
+	
 };
 
 var sprintViewModel = new SprintViewModel();

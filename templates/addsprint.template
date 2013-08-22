@@ -34,7 +34,7 @@
 		{{>menu.template}}
 
 		<div class="container">
-			
+
 			<h2>Add new sprint</h2>
 			<form class="form-horizontal" data-bind="submit: addSprint">
 				<div class="control-group">
@@ -44,9 +44,9 @@
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="boardName">Board names</label>
+					<label class="control-label" for="boardName">Board IDs</label>
 					<div class="controls">
-						<input class="input-xlarge" id="boardName" type="text" placeholder="Name of board" data-bind="value: currentBoard">
+						<input class="input-xlarge" id="boardName" type="text" placeholder="Add a board ID from Trello URL" data-bind="value: currentBoard">
 						<a href="#" data-bind="click: addSprintBoard">Add</a>
 					</div>
 					<div class="controls" data-bind="visible: sprint.boards().length > 0">

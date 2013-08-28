@@ -45,6 +45,10 @@
 		<li>blue: ideal estimate</li>
 	</ul>
 
+	<h4>Cumulative Flow</h4>
+	<figure style="width: 900px; height: 250px;" id="cumulativeFlow"></figure>
+
+
 	<h4>Done estimate vs. effort (daily)</h4>
 	<figure style="width: 900px; height: 250px;" id="effortChart"></figure>
 	<ul>
@@ -52,12 +56,12 @@
 		<li>blue: done effort</li>
 	</ul>
 
-	<h4>Done estimate vs. effort (total)</h4>
+<!-- 	<h4>Done estimate vs. effort (total)</h4>
 	<figure style="width: 900px; height: 250px;" id="totalEffortChart"></figure>
 	<ul>
 		<li>green: done estimate </li>
 		<li>blue: done effort (total)</li>
-	</ul>
+	</ul> -->
 
 	<h4>Statistics</h4>
 	<p>
@@ -122,6 +126,61 @@
       var myChart = new xChart("bar", data, "#burndownChart", opts);
       </script>
 
+    <script type="text/javascript">
+    	var data = {
+		  "xScale": "ordinal",
+		  "yScale": "linear",
+		  "type": "line-dotted",
+		  "main": [
+		    {
+	           "className": ".main.l2",
+	           "type": "line-dotted",
+	           "data":
+	           	[
+		           	{{#cumulativeFlow.lines}}
+			        	{ "x": {{x}}, "y": {{data1}} },
+	    			{{/cumulativeFlow.lines}}
+		          ]
+			},
+		    {
+		      "className": ".main.l1",
+		      "data": [
+		      	{{#cumulativeFlow.lines}}
+		        	{ "x": {{x}}, "y": {{data0}} },
+    			{{/cumulativeFlow.lines}}
+		          ]
+		    },
+		    {
+		      "className": ".main.l3",
+		      "data": [
+		      	{{#cumulativeFlow.lines}}
+		        	{ "x": {{x}}, "y": {{data2}} },
+    			{{/cumulativeFlow.lines}}
+		          ]
+		    },
+		    {
+		      "className": ".main.l4",
+		      "data": [
+		      	{{#cumulativeFlow.lines}}
+		        	{ "x": {{x}}, "y": {{data3}} },
+    			{{/cumulativeFlow.lines}}
+		          ]
+		    },
+		    {
+		      "className": ".main.l5",
+		      "data": [
+		      	{{#cumulativeFlow.lines}}
+		        	{ "x": {{x}}, "y": {{data4}} },
+    			{{/cumulativeFlow.lines}}
+		          ]
+		    }
+    	  ],
+		  "comp": []
+			};
+
+    	var myChart = new xChart("bar", data, "#cumulativeFlow", opts);
+    </script>
+
 	  <script>
 	      var data = {
 		  "xScale": "ordinal",
@@ -151,7 +210,7 @@
 			};
       var myChart = new xChart("bar", data, "#effortChart", opts);
       </script>
-
+<!-- 
       <script>
 	      var data = {
 		  "xScale": "ordinal",
@@ -180,7 +239,7 @@
 	};
       var myChart = new xChart("bar", data, "#totalEffortChart", opts);
       </script>
-
+ -->
       <div class="alert alert-success">
 	  	<strong>Last generation</strong>: {{generationTime}}
 	  </div>
